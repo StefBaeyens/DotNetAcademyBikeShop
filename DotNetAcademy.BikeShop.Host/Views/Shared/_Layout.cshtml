@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/scss/main.min.css" />
+</head>
+<body>
+    <header>
+        @{ await Html.RenderPartialAsync("_Navbar"); }
+    </header>
+
+    <div class="container">
+        <div class="m-4">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white p-4">
+        @{ await Html.RenderPartialAsync("_Footer"); }
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @* <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> *@
+    @* <script src="../../assets/js/vendor/popper.min.js"></script> *@
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

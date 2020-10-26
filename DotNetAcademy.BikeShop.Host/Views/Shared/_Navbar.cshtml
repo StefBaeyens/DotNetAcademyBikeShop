@@ -1,0 +1,17 @@
+﻿@using DotNetAcademy.BikeShop.Host.Helpers
+<nav class="site-header sticky-top">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#">Stef's Bike Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item @Html.IsActive("Home", "Index")">@Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Race bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Mountain bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("City bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </nav>
+</nav>
