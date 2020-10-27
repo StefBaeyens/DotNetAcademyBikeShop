@@ -10,27 +10,27 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
 {
     public class ProductsController : Controller
     {
-        private ICollection<Product> _products = new List<Product>
+        private ICollection<ProductViewModel> _products = new List<ProductViewModel>
         {
-            new Product
+            new ProductViewModel
             {
                 Id = 1,
                 Name = "Cannondale Moterra 1 Md 29 M",
                 Price = 7999.00f
             },
-            new Product
+            new ProductViewModel
             {
                 Id = 2,
                 Name = "Cannondale Slice Carbon 105",
                 Price = 2174.00f
             },
-            new Product
+            new ProductViewModel
             {
                 Id = 3,
                 Name = "Conway Ms 627",
                 Price = 700.00f
             },
-            new Product
+            new ProductViewModel
             {
                 Id = 4,
                 Name = "Pinarello Nytro Ultegra Disc H58",

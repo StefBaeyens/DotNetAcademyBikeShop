@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DotNetAcademy.BikeShop.Host.ViewModels.Product>
+﻿@model IEnumerable<DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel>
 
 @{
     ViewData["Title"] = "Products";
@@ -12,7 +12,7 @@
     @foreach (var item in Model.OrderBy(m => m.Price))
     {
         <div class="card">
-            <img class="card-img-top" src="images/bikes/@(item.Name.ToLowerInvariant().Replace(' ', '_') + ".jpeg")" alt="@item.Name" width="">
+            <img class="card-img-top" src="images/bikes/@(item.Name.ToLowerInvariant().Replace(' ', '_') + ".jpeg")" alt="@item.Name">
             <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <h6 class="card-subtitle">€ @($"{item.Price:N}")</h6>

@@ -1,4 +1,4 @@
-﻿@model DotNetAcademy.BikeShop.Host.ViewModels.Product
+﻿@model DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel
 
 @{
     ViewData["Title"] = Model.Name;
@@ -14,7 +14,7 @@
     </div>
     <div class="col-12 col-lg-4">
         <form action="/" method="post">
-            <h5>€ @Model.Price</h5>
+            <h5>€ @($"{Model.Price:N}")</h5>
             <div class="form-group">
                 <label for="amount">Amount:</label>
                 <input id="amount" class="form-control" type="number" min="1" step="1" value="1" />
