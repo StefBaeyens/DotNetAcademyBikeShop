@@ -28,12 +28,7 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
         // GET: ProductsController
         public ActionResult Index()
         {
-            var products = _mapper.Map<ICollection<ProductViewModel>>(_context.Products);
-            foreach (var productViewModel in products)
-            {
-                productViewModel.PathToImage = BaseImagePath + BikeImageHelper.GetRandomImage();
-            }
-            return View(products);
+            return View(_mapper.Map<ICollection<ProductViewModel>>(_context.Products));
         }
 
         // GET: ProductsController/Details/5
@@ -43,11 +38,7 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
 
             if (product == null) return NotFound(id);
 
-            var model = _mapper.Map<ProductViewModel>(product);
-
-            model.PathToImage = BaseImagePath + BikeImageHelper.GetRandomImage();
-
-            return View(model);
+            return View(_mapper.Map<ProductViewModel>(product));
         }
     }
 }
