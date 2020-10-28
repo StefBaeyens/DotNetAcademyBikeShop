@@ -2,62 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DotNetAcademy.BikeShop.Host.Data;
+using DotNetAcademy.BikeShop.Host.Helpers;
 using DotNetAcademy.BikeShop.Host.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNetAcademy.BikeShop.Host.Controllers
 {
     public class ProductsController : Controller
     {
-        private ICollection<ProductViewModel> _products = new List<ProductViewModel>
-        {
-            new ProductViewModel
-            {
-                Id = 1,
-                Name = "Cannondale Moterra 1 Md 29 M",
-                Price = 7999.00f
-            },
-            new ProductViewModel
-            {
-                Id = 2,
-                Name = "Cannondale Slice Carbon 105",
-                Price = 2174.00f
-            },
-            new ProductViewModel
-            {
-                Id = 3,
-                Name = "Conway Ms 627",
-                Price = 700.00f
-            },
-            new ProductViewModel
-            {
-                Id = 4,
-                Name = "Pinarello Nytro Ultegra Disc H58",
-                Price = 6999.00f
-            }
-        };
+        private const string BaseImagePath = "/images/bikes/";
+        private BikeShopDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductsController()
+        public ProductsController(BikeShopDbContext context, IMapper mapper)
         {
-            
+            _context = context;
+            _mapper = mapper;
         }
 
         // GET: ProductsController
         public ActionResult Index()
         {
-            return View(_products);
+            var products = _mapper.Map<ICollection<ProductViewModel>>(_context.Products);
+            foreach (var productViewModel in products)
+            {
+                productViewModel.PathToImage = BaseImagePath + BikeImageHelper.GetRandomImage();
+            }
+            return View(products);
         }
 
         // GET: ProductsController/Details/5
         public ActionResult Details(int id)
         {
-            var product = _products.SingleOrDefault(p => p.Id == id);
-            if (product == null)
-            {
-                return NotFound(id);
-            }
-            return View(product);
+            var product = _context.Products.SingleOrDefault(p => p.Id == id);
+
+            if (product == null) return NotFound(id);
+
+            var model = _mapper.Map<ProductViewModel>(product);
+
+            model.PathToImage = BaseImagePath + BikeImageHelper.GetRandomImage();
+
+            return View(model);
         }
     }
 }

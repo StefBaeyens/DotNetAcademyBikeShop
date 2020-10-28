@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetAcademy.BikeShop.Host.Helpers
 {
-    public class BikeImageHelper
+    public static class BikeImageHelper
     {
         private static readonly string[] FileNames =
         {
@@ -15,9 +12,11 @@ namespace DotNetAcademy.BikeShop.Host.Helpers
             "pinarello_nytro_ultegra_disc_h58.jpeg"
         };
 
+        private static readonly Random Random = new Random();
+
         public static string GetRandomImage()
         {
-            return FileNames[new Random().Next(0, FileNames.Length)];
+            return FileNames[Random.Next(0, FileNames.Length)];
         }
     }
 }

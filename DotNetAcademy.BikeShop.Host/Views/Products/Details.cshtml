@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-12 col-lg-8">
-        <img src="/images/bikes/@(Model.Name.ToLowerInvariant().Replace(' ', '_')).jpeg" class="bike-image" alt="@Model.Name" />
+        <img src="@Model.PathToImage" class="bike-image" alt="@Model.Name" />
     </div>
     <div class="col-12 col-lg-4">
         <form action="/" method="post">
