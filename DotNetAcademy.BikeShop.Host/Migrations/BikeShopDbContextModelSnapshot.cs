@@ -50,8 +50,8 @@ namespace DotNetAcademy.BikeShop.Host.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -61,302 +61,302 @@ namespace DotNetAcademy.BikeShop.Host.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "vc1uznwj",
-                            Price = 40.590000000000003
+                            Name = "xbql52za",
+                            Price = 257.7m
                         },
                         new
                         {
                             Id = 2,
-                            Name = "mdaadqg1",
-                            Price = 229.09999999999999
+                            Name = "0bbo104h",
+                            Price = 207.32m
                         },
                         new
                         {
                             Id = 3,
-                            Name = "ff3sibmb",
-                            Price = 179.69
+                            Name = "pagvzybw",
+                            Price = 31.41m
                         },
                         new
                         {
                             Id = 4,
-                            Name = "zdkipmp2",
-                            Price = 272.33999999999997
+                            Name = "1tdsvfre",
+                            Price = 396.52m
                         },
                         new
                         {
                             Id = 5,
-                            Name = "gxq1n5s0",
-                            Price = 161.96000000000001
+                            Name = "3wwjr5af",
+                            Price = 162.73m
                         },
                         new
                         {
                             Id = 6,
-                            Name = "mivlqwgh",
-                            Price = 157.28
+                            Name = "rx5a5uif",
+                            Price = 357.42m
                         },
                         new
                         {
                             Id = 7,
-                            Name = "dw30tqds",
-                            Price = 244.31
+                            Name = "n4idaifn",
+                            Price = 124.46m
                         },
                         new
                         {
                             Id = 8,
-                            Name = "cbnrerlc",
-                            Price = 499.83999999999997
+                            Name = "lyecnqyz",
+                            Price = 183.41m
                         },
                         new
                         {
                             Id = 9,
-                            Name = "jtkyz5wh",
-                            Price = 137.94999999999999
+                            Name = "hydcj3pq",
+                            Price = 95.63m
                         },
                         new
                         {
                             Id = 10,
-                            Name = "ghr42jq2",
-                            Price = 128.88999999999999
+                            Name = "55mkjfza",
+                            Price = 169.94m
                         },
                         new
                         {
                             Id = 11,
-                            Name = "3rhl5bq1",
-                            Price = 358.39999999999998
+                            Name = "kgjwdpiz",
+                            Price = 324.1m
                         },
                         new
                         {
                             Id = 12,
-                            Name = "t232fevx",
-                            Price = 399.64999999999998
+                            Name = "r3fyde4u",
+                            Price = 255.12m
                         },
                         new
                         {
                             Id = 13,
-                            Name = "0ichobhe",
-                            Price = 476.87
+                            Name = "ee5hai2b",
+                            Price = 390.12m
                         },
                         new
                         {
                             Id = 14,
-                            Name = "hvlg3eu5",
-                            Price = 133.91999999999999
+                            Name = "suc20vqk",
+                            Price = 269.78m
                         },
                         new
                         {
                             Id = 15,
-                            Name = "q2k1yflt",
-                            Price = 331.06999999999999
+                            Name = "go3pvt45",
+                            Price = 453.02m
                         },
                         new
                         {
                             Id = 16,
-                            Name = "uzufu2rn",
-                            Price = 126.41
+                            Name = "uwsz0ktz",
+                            Price = 383.34m
                         },
                         new
                         {
                             Id = 17,
-                            Name = "awlazzkz",
-                            Price = 262.20999999999998
+                            Name = "utfsrazf",
+                            Price = 356.02m
                         },
                         new
                         {
                             Id = 18,
-                            Name = "ib0qujcg",
-                            Price = 281.54000000000002
+                            Name = "nd1muem2",
+                            Price = 474.36m
                         },
                         new
                         {
                             Id = 19,
-                            Name = "ukub40lq",
-                            Price = 486.72000000000003
+                            Name = "i3gj0fzs",
+                            Price = 304.66m
                         },
                         new
                         {
                             Id = 20,
-                            Name = "twol4hdq",
-                            Price = 412.26999999999998
+                            Name = "qyc3zcrc",
+                            Price = 341.16m
                         },
                         new
                         {
                             Id = 21,
-                            Name = "fptbv22u",
-                            Price = 83.010000000000005
+                            Name = "hik15flb",
+                            Price = 72.49m
                         },
                         new
                         {
                             Id = 22,
-                            Name = "e3130zht",
-                            Price = 29.210000000000001
+                            Name = "otbqpwrp",
+                            Price = 115.86m
                         },
                         new
                         {
                             Id = 23,
-                            Name = "45clrq1h",
-                            Price = 318.76999999999998
+                            Name = "cfvlclvx",
+                            Price = 137.22m
                         },
                         new
                         {
                             Id = 24,
-                            Name = "110t354x",
-                            Price = 222.34
+                            Name = "wakpcogx",
+                            Price = 218.07m
                         },
                         new
                         {
                             Id = 25,
-                            Name = "gbay0meh",
-                            Price = 139.44999999999999
+                            Name = "hbwa4cg4",
+                            Price = 209.12m
                         },
                         new
                         {
                             Id = 26,
-                            Name = "unxphj0f",
-                            Price = 246.25999999999999
+                            Name = "jvtteamk",
+                            Price = 377.98m
                         },
                         new
                         {
                             Id = 27,
-                            Name = "fs0efory",
-                            Price = 141.15000000000001
+                            Name = "0jhkjvwf",
+                            Price = 496.52m
                         },
                         new
                         {
                             Id = 28,
-                            Name = "di1qix5p",
-                            Price = 309.66000000000003
+                            Name = "4ar4pm5y",
+                            Price = 432.69m
                         },
                         new
                         {
                             Id = 29,
-                            Name = "weh4aaav",
-                            Price = 489.56999999999999
+                            Name = "xp0nsutm",
+                            Price = 335.38m
                         },
                         new
                         {
                             Id = 30,
-                            Name = "zwkoni0w",
-                            Price = 60.340000000000003
+                            Name = "oyuwdc2c",
+                            Price = 288.07m
                         },
                         new
                         {
                             Id = 31,
-                            Name = "s3kq5w1q",
-                            Price = 312.86000000000001
+                            Name = "1b0bqwds",
+                            Price = 307.34m
                         },
                         new
                         {
                             Id = 32,
-                            Name = "om4uv233",
-                            Price = 306.39999999999998
+                            Name = "aaixrj10",
+                            Price = 139.9m
                         },
                         new
                         {
                             Id = 33,
-                            Name = "qr3alxeb",
-                            Price = 433.72000000000003
+                            Name = "mzdxoaom",
+                            Price = 496.67m
                         },
                         new
                         {
                             Id = 34,
-                            Name = "so1vrlbh",
-                            Price = 467.83999999999997
+                            Name = "zzj3nhg1",
+                            Price = 473.94m
                         },
                         new
                         {
                             Id = 35,
-                            Name = "hryalvvv",
-                            Price = 349.55000000000001
+                            Name = "4tbk5iwp",
+                            Price = 53.02m
                         },
                         new
                         {
                             Id = 36,
-                            Name = "m0vz2ji5",
-                            Price = 286.31999999999999
+                            Name = "1bqs3bu1",
+                            Price = 457.35m
                         },
                         new
                         {
                             Id = 37,
-                            Name = "3ftp1ejt",
-                            Price = 57.549999999999997
+                            Name = "2u0ex4rl",
+                            Price = 488.16m
                         },
                         new
                         {
                             Id = 38,
-                            Name = "er5lg1sk",
-                            Price = 18.199999999999999
+                            Name = "y4ityerx",
+                            Price = 490.01m
                         },
                         new
                         {
                             Id = 39,
-                            Name = "saiafcgo",
-                            Price = 299.38999999999999
+                            Name = "1xfl5ouv",
+                            Price = 323.58m
                         },
                         new
                         {
                             Id = 40,
-                            Name = "3hcy4htn",
-                            Price = 417.86000000000001
+                            Name = "m05xhabz",
+                            Price = 320.71m
                         },
                         new
                         {
                             Id = 41,
-                            Name = "yof2nwyx",
-                            Price = 349.62
+                            Name = "00dneyy1",
+                            Price = 174.83m
                         },
                         new
                         {
                             Id = 42,
-                            Name = "ndwanyti",
-                            Price = 388.89999999999998
+                            Name = "lizyqna5",
+                            Price = 309.85m
                         },
                         new
                         {
                             Id = 43,
-                            Name = "ztkii2th",
-                            Price = 434.04000000000002
+                            Name = "z1puc4u4",
+                            Price = 180.76m
                         },
                         new
                         {
                             Id = 44,
-                            Name = "jeaddo0u",
-                            Price = 464.94999999999999
+                            Name = "vprqaj5u",
+                            Price = 328.04m
                         },
                         new
                         {
                             Id = 45,
-                            Name = "xy2njrkb",
-                            Price = 62.619999999999997
+                            Name = "1kbtooes",
+                            Price = 421.96m
                         },
                         new
                         {
                             Id = 46,
-                            Name = "jf0ogs4q",
-                            Price = 342.17000000000002
+                            Name = "ksu5hvo3",
+                            Price = 31.27m
                         },
                         new
                         {
                             Id = 47,
-                            Name = "sanokmgl",
-                            Price = 452.55000000000001
+                            Name = "glwj0y5b",
+                            Price = 241.99m
                         },
                         new
                         {
                             Id = 48,
-                            Name = "sivb41u3",
-                            Price = 484.86000000000001
+                            Name = "otjm3keg",
+                            Price = 26.6m
                         },
                         new
                         {
                             Id = 49,
-                            Name = "4lmaqmxu",
-                            Price = 383.44
+                            Name = "hipnup04",
+                            Price = 417.38m
                         },
                         new
                         {
                             Id = 50,
-                            Name = "ig01xcc5",
-                            Price = 54.600000000000001
+                            Name = "sbwv2mro",
+                            Price = 471.6m
                         });
                 });
 

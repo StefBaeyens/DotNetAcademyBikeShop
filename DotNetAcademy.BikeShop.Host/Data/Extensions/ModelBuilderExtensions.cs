@@ -43,7 +43,7 @@ namespace DotNetAcademy.BikeShop.Host.Data.Extensions
                 {
                     Id = id,
                     Name = GetRandomString(),
-                    Price = Math.Round(new Random().NextDouble() * 500, 2)
+                    Price = (decimal) Math.Round(new Random().NextDouble() * 500, 2)
                 };
 
                 //TODO: Remove! Solely use this for testing purposes
