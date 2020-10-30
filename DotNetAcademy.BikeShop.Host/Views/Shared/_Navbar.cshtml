@@ -12,7 +12,7 @@
                 <li class="nav-item">@Html.ActionLink("Mountain bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("City bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
             </ul>
-            <a class="btn btn-success">My Basket</a>
+            @Html.ActionLink("My Shopping Bag", "Index", "ShoppingBag", null, new {@class="btn btn-success"})
         </div>
     </nav>
 </nav>

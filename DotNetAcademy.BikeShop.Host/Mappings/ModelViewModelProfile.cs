@@ -10,6 +10,8 @@ namespace DotNetAcademy.BikeShop.Host.Mappings
         public ModelViewModelProfile()
         {
             CreateMap<Product, ProductViewModel>().ForMember(model => model.PathToImage, opt => opt.MapFrom(_ => "/images/bikes/" + BikeImageHelper.GetRandomImage()));
+            CreateMap<ShoppingBag, ShoppingBagViewModel>();
+            CreateMap<ShoppingItem, ShoppingItemViewModel>();
         }
     }
 }
