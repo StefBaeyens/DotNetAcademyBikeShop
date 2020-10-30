@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,6 +7,7 @@ using DotNetAcademy.BikeShop.Host.Data;
 using DotNetAcademy.BikeShop.Host.Models;
 using DotNetAcademy.BikeShop.Host.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using PagedList;
 
@@ -23,7 +25,7 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
         }
 
         // GET: ProductsController
-        public ActionResult Index(int? page)
+        public IActionResult Index(int? page)
         {
             if (page < 1) return NotFound();
 
@@ -39,14 +41,105 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
             return View(model);
         }
 
-        // GET: ProductsController/Details/5
-        public ActionResult Details(int id)
+        // GET: Products/Details/5
+        public IActionResult Details(int id)
         {
             var product = _context.Products.SingleOrDefault(p => p.Id == id);
 
             if (product == null) return NotFound(id);
 
             return View(_mapper.Map<ProductViewModel>(product));
+        }
+
+        // GET: Products/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Products/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,PathToImage")] ProductViewModel product)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: Move to handler
+                var savedProduct = (await _context.Products.AddAsync(_mapper.Map<Product>(product))).Entity;
+                await _context.SaveChangesAsync();
+                MessageSuccess("The product was successfully created.");
+                return RedirectToAction("Details", savedProduct.Id);
+            }
+
+            return View(product);
+        }
+
+        // GET: Products/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        // POST: Products/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,PathToImage")] ProductViewModel product)
+        {
+            if (id != product.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                //TODO: Move to handler
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+                MessageSuccess("The product was successfully updated.");
+                return RedirectToAction(nameof(Details));
+            }
+
+            return View(product);
+        }
+
+        // GET: Products/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // POST: Products/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            //TODO: Move to handler
+            var product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            MessageSuccess("The product was successfully deleted.");
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<ActionResult> AddToBasket(AddToBasketViewModel model)
@@ -71,7 +164,7 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
             var bag = customer.Bags.First();
             var product = await _context.Products.FindAsync(model.Product.Id);
 
-            bag.AddToBag(new ShoppingItem{Product = product, Quantity = model.Quantity});
+            bag.AddToBag(new ShoppingItem { Product = product, Quantity = model.Quantity });
             //=====================
 
             await _context.SaveChangesAsync();
