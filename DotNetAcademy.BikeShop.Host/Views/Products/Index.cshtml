@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel>
+﻿@model PagedList.IPagedList<DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel>
 
 @{
     ViewData["Title"] = "Products";
@@ -11,7 +11,7 @@
 <div class="row">
     @foreach (var item in Model.OrderBy(m => m.Price))
     {
-        <div class="col-12 col-md-6 col-lg-3 mb-3">
+        <div class="col-12 col-lg-4 mb-3">
             <div class="card">
                 <img class="card-img-top p-2" src="@item.PathToImage" alt="@item.Name">
                 <div class="card-body">
@@ -22,4 +22,10 @@
             </div>
         </div>
     }
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
+    @Html.ActionLink("🢀", "Index", new {page = Model.PageNumber - 1}, new { @class = "btn btn-sm " + (!Model.HasPreviousPage ? "disabled" : "") })
+    <p class="m-1">Page @Model.PageNumber of @Model.PageCount</p>
+    @Html.ActionLink("🢂", "Index", new { page = Model.PageNumber + 1 }, new { @class = "btn btn-sm " + (!Model.HasNextPage ? "disabled" : "") })
 </div>

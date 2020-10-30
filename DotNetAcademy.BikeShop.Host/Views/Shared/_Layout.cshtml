@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using DotNetAcademy.BikeShop.Host.Helpers
+@using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging
+@using Newtonsoft.Json
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -8,27 +11,48 @@
     <link rel="stylesheet" href="~/scss/main.min.css" />
 </head>
 <body>
-    <header>
-        @{ await Html.RenderPartialAsync("_Navbar"); }
-    </header>
+<header>
+    @{ await Html.RenderPartialAsync("_Navbar"); }
+</header>
 
-    <div class="container">
-        <div class="m-4">
-            @RenderBody()
-        </div>
+<div class="container">
+    <div class="m-4">
+        @{
+            var messageData = TempData["Message"];
+            var alertMessage = messageData != null ? JsonConvert.DeserializeObject<AlertMessage>(messageData.ToString()) : null;
+            if (alertMessage != null)
+            {
+                <div class="alert @alertMessage.BootstrapClass alert-dismissable fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                    </button>
+
+                    @if (alertMessage.RawHtml)
+                    {
+                        <span>@Html.Raw(alertMessage.Message)</span>
+                    }
+                    else
+                    {
+                        <span>@alertMessage.Message</span>
+                    }
+                </div>
+            }
+        }
+        @RenderBody()
     </div>
+</div>
 
-    <footer class="bg-dark text-white p-4">
-        @{ await Html.RenderPartialAsync("_Footer"); }
-    </footer>
+<footer class="bg-dark text-white p-4">
+    @{ await Html.RenderPartialAsync("_Footer"); }
+</footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    @* <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> *@
-    @* <script src="../../assets/js/vendor/popper.min.js"></script> *@
-    <script src="~/lib/jquery/jquery.slim.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    @RenderSection("Scripts", false)
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+@* <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> *@
+@* <script src="../../assets/js/vendor/popper.min.js"></script> *@
+<script src="~/lib/jquery/jquery.slim.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+@RenderSection("Scripts", false)
 </body>
 </html>

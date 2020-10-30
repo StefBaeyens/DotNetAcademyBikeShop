@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DotNetAcademy.BikeShop.Host.Models
 {
@@ -11,5 +12,25 @@ namespace DotNetAcademy.BikeShop.Host.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public ICollection<ShoppingItem> Items { get; set; }
+
+        public ShoppingBag()
+        {
+            Items = new List<ShoppingItem>();
+            Date = DateTime.Now;
+        }
+
+        public void AddToBag(ShoppingItem item)
+        {
+            var existingItem = Items.SingleOrDefault(shoppingItem => shoppingItem.Product == item.Product);
+            if (existingItem != null)
+            {
+                existingItem.Quantity += item.Quantity;
+            }
+            else
+            {
+                item.Bag = this;
+                Items.Add(item);
+            }
+        }
     }
 }

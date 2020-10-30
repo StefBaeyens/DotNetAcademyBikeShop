@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DotNetAcademy.BikeShop.Host.Models
 {
@@ -9,5 +10,10 @@ namespace DotNetAcademy.BikeShop.Host.Models
         public string FirstName { get; set; }
 
         public ICollection<ShoppingBag> Bags { get; set; }
+
+        public Customer()
+        {
+            Bags = new List<ShoppingBag>();
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DotNetAcademy.BikeShop.Host.Helpers;
 using DotNetAcademy.BikeShop.Host.Models;
 using DotNetAcademy.BikeShop.Host.ViewModels;

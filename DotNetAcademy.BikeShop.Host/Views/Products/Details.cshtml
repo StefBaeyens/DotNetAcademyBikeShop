@@ -1,4 +1,5 @@
-﻿@model DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel
+﻿@using DotNetAcademy.BikeShop.Host.ViewModels
+@model DotNetAcademy.BikeShop.Host.ViewModels.ProductViewModel
 
 @{
     ViewData["Title"] = Model.Name;
@@ -13,17 +14,10 @@
         <img src="@Model.PathToImage" class="bike-image" alt="@Model.Name" />
     </div>
     <div class="col-12 col-lg-4">
-        <form action="/" method="post">
-            <h5>€ @($"{Model.Price:N}")</h5>
-            <div class="form-group">
-                <label for="amount">Amount:</label>
-                <input id="amount" class="form-control" type="number" min="1" step="1" value="1" />
-            </div>
-            <button type="submit" class="btn btn-success">Add to card</button>
-        </form>
+        @{ await Html.RenderPartialAsync("_AddToBasket", new AddToBasketViewModel { Product = Model }); }
     </div>
 </div>
 
 <div>
-    @Html.ActionLink("Back to overview", "Index", "Products", null, new {@class="btn btn-outline-secondary"})
+    @Html.ActionLink("Back to overview", "Index", "Products", null, new { @class = "btn btn-outline-secondary" })
 </div>

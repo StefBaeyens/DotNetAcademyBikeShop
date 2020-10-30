@@ -1,7 +1,6 @@
 ﻿using DotNetAcademy.BikeShop.Host.Data.Extensions;
 using DotNetAcademy.BikeShop.Host.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DotNetAcademy.BikeShop.Host.Data
 {
