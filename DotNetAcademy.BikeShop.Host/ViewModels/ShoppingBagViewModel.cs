@@ -11,8 +11,6 @@ namespace DotNetAcademy.BikeShop.Host.ViewModels
         public int Id { get; set; }
         public DateTime Date { get; set; }
 
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
         public ICollection<ShoppingItemViewModel> Items { get; set; }
 
         public decimal GetTotal => Items.Sum(i => i.TotalPrice);

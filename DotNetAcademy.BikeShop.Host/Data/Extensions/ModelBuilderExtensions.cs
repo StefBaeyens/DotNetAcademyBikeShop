@@ -23,7 +23,7 @@ namespace DotNetAcademy.BikeShop.Host.Data.Extensions
             modelBuilder.Entity<ShoppingItem>().Property(item => item.Quantity).IsRequired();
 
             modelBuilder.Entity<Product>().Property(product => product.Name).IsRequired();
-            modelBuilder.Entity<Product>().Property(product => product.Price).IsRequired();
+            modelBuilder.Entity<Product>().Property(product => product.Price).IsRequired().HasColumnType("decimal(8,2)");
         }
 
         private static void SeedProducts(ModelBuilder modelBuilder)

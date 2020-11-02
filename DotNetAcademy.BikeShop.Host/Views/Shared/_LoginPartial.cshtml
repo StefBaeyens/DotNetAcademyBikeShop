@@ -1,0 +1,21 @@
+﻿@using DotNetAcademy.BikeShop.Host.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Customer> SignInManager
+@inject UserManager<Customer> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="d-flex">
+            @Html.ActionLink("My Shopping Bag", "Index", "ShoppingBag", null, new { @class = "btn btn-success" })
+            <button type="submit" class="btn btn-outline-secondary">Log out</button>
+        </div>
+    }
+}
+else
+{
+    <ul class="navbar-nav">
+        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })</li>
+    </ul>
+}

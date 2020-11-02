@@ -6,6 +6,7 @@ using AutoMapper;
 using DotNetAcademy.BikeShop.Host.Data;
 using DotNetAcademy.BikeShop.Host.Models;
 using DotNetAcademy.BikeShop.Host.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +14,10 @@ using PagedList;
 
 namespace DotNetAcademy.BikeShop.Host.Controllers
 {
+    [Authorize]
     public class ProductsController : BaseController
     {
-        private BikeShopDbContext _context;
+        private readonly BikeShopDbContext _context;
         private readonly IMapper _mapper;
 
         public ProductsController(BikeShopDbContext context, IMapper mapper)
@@ -149,19 +151,20 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
 
             if (customer == null)
             {
-                customer = new Customer
-                {
-                    FirstName = "Stef",
-                    Name = "Baeyens",
-                    Bags = new List<ShoppingBag>
-                    {
-                        new ShoppingBag()
-                    }
-                };
-                customer = (await _context.Customers.AddAsync(customer)).Entity;
+                return RedirectToAction("Login", "Account");
             }
 
-            var bag = customer.Bags.First();
+            var bag = customer.Bags.FirstOrDefault();
+
+            if (bag == null)
+            {
+                bag = (await _context.ShoppingBags.AddAsync(new ShoppingBag
+                {
+                    Customer = customer,
+                    Date = DateTime.Now
+                })).Entity;
+            }
+
             var product = await _context.Products.FindAsync(model.Product.Id);
 
             bag.AddToBag(new ShoppingItem { Product = product, Quantity = model.Quantity });

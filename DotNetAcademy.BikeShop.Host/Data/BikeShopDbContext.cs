@@ -1,10 +1,12 @@
 ﻿using DotNetAcademy.BikeShop.Host.Data.Extensions;
 using DotNetAcademy.BikeShop.Host.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetAcademy.BikeShop.Host.Data
 {
-    public class BikeShopDbContext : DbContext
+    public class BikeShopDbContext : IdentityDbContext<Customer>
     {
         public BikeShopDbContext(DbContextOptions<BikeShopDbContext> options) : base(options)
         {
@@ -17,6 +19,7 @@ namespace DotNetAcademy.BikeShop.Host.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
             modelBuilder.AddFluentAPI();
         }

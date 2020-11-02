@@ -12,7 +12,7 @@
                 <li class="nav-item">@Html.ActionLink("Mountain bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("City bikes", "Index", "Products", null, new { @class = "nav-link" })</li>
             </ul>
-            @Html.ActionLink("My Shopping Bag", "Index", "ShoppingBag", null, new {@class="btn btn-success"})
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
 </nav>

@@ -1,7 +1,10 @@
+using System;
 using AutoMapper;
 using DotNetAcademy.BikeShop.Host.Data;
+using DotNetAcademy.BikeShop.Host.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +26,11 @@ namespace DotNetAcademy.BikeShop.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BikeShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BikeShopDb")));
+
+            services.AddIdentity<Customer, IdentityRole>()
+                .AddEntityFrameworkStores<BikeShopDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc();
         }
@@ -42,6 +50,9 @@ namespace DotNetAcademy.BikeShop.Host
 
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

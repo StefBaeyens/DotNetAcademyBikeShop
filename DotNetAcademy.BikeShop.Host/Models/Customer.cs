@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace DotNetAcademy.BikeShop.Host.Models
 {
-    public class Customer
+    public class Customer : IdentityUser
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
 
