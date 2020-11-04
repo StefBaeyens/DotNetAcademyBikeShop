@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using DotNetAcademy.BikeShop.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace DotNetAcademy.BikeShop.Presentation.Models
+namespace DotNetAcademy.BikeShop.Infrastructure.Models
 {
     public class Customer : IdentityUser
     {

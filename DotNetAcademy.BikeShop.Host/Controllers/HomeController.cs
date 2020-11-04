@@ -1,8 +1,9 @@
-﻿using DotNetAcademy.BikeShop.Host.Helpers;
-using DotNetAcademy.BikeShop.Host.ViewModels;
+﻿using DotNetAcademy.BikeShop.Infrastructure.Helpers;
+using DotNetAcademy.BikeShop.Presentation.Helpers;
+using DotNetAcademy.BikeShop.Presentation.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotNetAcademy.BikeShop.Host.Controllers
+namespace DotNetAcademy.BikeShop.Presentation.Controllers
 {
     public class HomeController : BaseController
     {

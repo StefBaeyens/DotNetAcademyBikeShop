@@ -1,4 +1,4 @@
-﻿namespace DotNetAcademy.BikeShop.Presentation.Models
+﻿namespace DotNetAcademy.BikeShop.Domain.Models
 {
     public class ShoppingItem
     {

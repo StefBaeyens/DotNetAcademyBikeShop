@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace DotNetAcademy.BikeShop.Host
+namespace DotNetAcademy.BikeShop.Presentation
 {
     public class Program
     {

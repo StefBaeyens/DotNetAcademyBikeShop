@@ -1,4 +1,4 @@
-﻿namespace DotNetAcademy.BikeShop.Host.ViewModels
+﻿namespace DotNetAcademy.BikeShop.Presentation.ViewModels
 {
     public class HomeViewModel
     {

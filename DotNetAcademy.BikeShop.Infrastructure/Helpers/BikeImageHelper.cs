@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNetAcademy.BikeShop.Host.Helpers
+namespace DotNetAcademy.BikeShop.Infrastructure.Helpers
 {
     public static class BikeImageHelper
     {

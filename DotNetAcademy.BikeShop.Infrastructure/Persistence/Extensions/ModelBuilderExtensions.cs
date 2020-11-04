@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DotNetAcademy.BikeShop.Host.Models;
+using DotNetAcademy.BikeShop.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Customer = DotNetAcademy.BikeShop.Infrastructure.Models.Customer;
 
-namespace DotNetAcademy.BikeShop.Host.Data.Extensions
+namespace DotNetAcademy.BikeShop.Infrastructure.Persistence.Extensions
 {
     public static class ModelBuilderExtensions
     {

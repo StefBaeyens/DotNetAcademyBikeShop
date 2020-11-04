@@ -1,42 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using DotNetAcademy.BikeShop.Host.Data;
-using DotNetAcademy.BikeShop.Host.Models;
-using DotNetAcademy.BikeShop.Host.ViewModels;
+using DotNetAcademy.BikeShop.Application.Commands;
+using DotNetAcademy.BikeShop.Application.Queries;
+using DotNetAcademy.BikeShop.Application.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
 using PagedList;
 
-namespace DotNetAcademy.BikeShop.Host.Controllers
+namespace DotNetAcademy.BikeShop.Presentation.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class ProductsController : BaseController
     {
-        private readonly BikeShopDbContext _context;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public ProductsController(BikeShopDbContext context, IMapper mapper)
+        public ProductsController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         // GET: ProductsController
-        public IActionResult Index(int? page)
+        public async Task<IActionResult> Index(int? page)
         {
-            if (page < 1) return NotFound();
-
-            var products = _mapper.Map<ICollection<ProductViewModel>>(_context.Products.OrderBy(product => product.Price));
+            var response = await _mediator.Send(new GetProductsQuery());
 
             const int pageSize = 9;
             var pageNumber = page ?? 1;
 
-            var model = products.ToPagedList(pageNumber, pageSize);
+            //I know this enumerates the results the items before paging but for this project + amount of data I think it's fine
+            var model = response.ToPagedList(pageNumber, pageSize);
 
             if (page > model.PageCount) return NotFound();
 
@@ -44,13 +37,13 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
         }
 
         // GET: Products/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var product = _context.Products.SingleOrDefault(p => p.Id == id);
+            var product = await _mediator.Send(new GetProductQuery { Id = id });
 
             if (product == null) return NotFound(id);
 
-            return View(_mapper.Map<ProductViewModel>(product));
+            return View(product);
         }
 
         // GET: Products/Create
@@ -64,19 +57,12 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,PathToImage")] ProductViewModel product)
         {
-            if (ModelState.IsValid)
-            {
-                //TODO: Move to handler
-                var savedProduct = (await _context.Products.AddAsync(_mapper.Map<Product>(product))).Entity;
-                await _context.SaveChangesAsync();
-                MessageSuccess("The product was successfully created.");
-                return RedirectToAction("Details", savedProduct.Id);
-            }
-
-            return View(product);
+            var addedProduct = await _mediator.Send(new AddProductCommand { Model = product });
+            MessageSuccess("The product was successfully created.");
+            return RedirectToAction("Details", addedProduct.Id);
         }
 
-        // GET: Products/Edit/5
+        /*// GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -175,6 +161,6 @@ namespace DotNetAcademy.BikeShop.Host.Controllers
             MessageSuccess("This item was successfully added to your basket");
 
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }

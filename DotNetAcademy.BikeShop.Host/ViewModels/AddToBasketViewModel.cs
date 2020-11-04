@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using DotNetAcademy.BikeShop.Application.ViewModels;
 
-namespace DotNetAcademy.BikeShop.Host.ViewModels
+namespace DotNetAcademy.BikeShop.Presentation.ViewModels
 {
     public class AddToBasketViewModel
     {

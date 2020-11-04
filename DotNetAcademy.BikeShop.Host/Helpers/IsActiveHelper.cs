@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace DotNetAcademy.BikeShop.Host.Helpers
+namespace DotNetAcademy.BikeShop.Presentation.Helpers
 {
     public static class IsActiveHelper
     {

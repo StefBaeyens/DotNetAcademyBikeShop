@@ -1,8 +1,8 @@
-﻿using DotNetAcademy.BikeShop.Host.Helpers;
+﻿using DotNetAcademy.BikeShop.Presentation.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace DotNetAcademy.BikeShop.Host.Controllers
+namespace DotNetAcademy.BikeShop.Presentation.Controllers
 {
     public class BaseController : Controller
     {

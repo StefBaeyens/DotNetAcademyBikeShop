@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DotNetAcademy.BikeShop.Host.Models;
+﻿using DotNetAcademy.BikeShop.Application.ViewModels;
 
-namespace DotNetAcademy.BikeShop.Host.ViewModels
+namespace DotNetAcademy.BikeShop.Presentation.ViewModels
 {
     public class ShoppingItemViewModel
     {

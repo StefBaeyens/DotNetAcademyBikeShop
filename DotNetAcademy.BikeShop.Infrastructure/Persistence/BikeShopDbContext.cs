@@ -1,18 +1,19 @@
-﻿using DotNetAcademy.BikeShop.Host.Data.Extensions;
-using DotNetAcademy.BikeShop.Host.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using DotNetAcademy.BikeShop.Application.Interfaces;
+using DotNetAcademy.BikeShop.Domain.Models;
+using DotNetAcademy.BikeShop.Infrastructure.Models;
+using DotNetAcademy.BikeShop.Infrastructure.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetAcademy.BikeShop.Host.Data
+namespace DotNetAcademy.BikeShop.Infrastructure.Persistence
 {
-    public class BikeShopDbContext : IdentityDbContext<Customer>
+    public class BikeShopDbContext : DbContext, IBikeShopDbContext
     {
         public BikeShopDbContext(DbContextOptions<BikeShopDbContext> options) : base(options)
         {
         }
         
-        public DbSet<Customer>Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingBag> ShoppingBags { get; set; }
         public DbSet<ShoppingItem> ShoppingItems { get; set; }

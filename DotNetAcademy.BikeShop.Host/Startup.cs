@@ -1,16 +1,12 @@
-using System;
-using AutoMapper;
-using DotNetAcademy.BikeShop.Host.Data;
-using DotNetAcademy.BikeShop.Host.Models;
+using DotNetAcademy.BikeShop.Application;
+using DotNetAcademy.BikeShop.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DotNetAcademy.BikeShop.Host
+namespace DotNetAcademy.BikeShop.Presentation
 {
     public class Startup
     {
@@ -25,13 +21,12 @@ namespace DotNetAcademy.BikeShop.Host
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BikeShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BikeShopDb")));
+            services.RegisterMediatR();
+            services.RegisterAutoMapper();
+            services.RegisterPersistence(Configuration);
+            services.RegisterIdentity();
+            services.RegisterFluentValidations();
 
-            services.AddIdentity<Customer, IdentityRole>()
-                .AddEntityFrameworkStores<BikeShopDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddAutoMapper(typeof(Startup));
             services.AddMvc();
         }
 

@@ -1,10 +1,9 @@
-﻿namespace DotNetAcademy.BikeShop.Host.ViewModels
+﻿namespace DotNetAcademy.BikeShop.Domain.Models
 {
-    public class ProductViewModel
+    public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public string PathToImage { get; set; }
     }
 }

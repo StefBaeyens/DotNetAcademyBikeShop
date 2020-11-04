@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace DotNetAcademy.BikeShop.Host.Helpers
+namespace DotNetAcademy.BikeShop.Presentation.Helpers
 {
     [Serializable]
     public enum AlertMessageType

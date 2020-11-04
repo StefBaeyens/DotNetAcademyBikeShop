@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using DotNetAcademy.BikeShop.Host.Models;
-using DotNetAcademy.BikeShop.Host.ViewModels;
+using DotNetAcademy.BikeShop.Presentation.Models;
+using DotNetAcademy.BikeShop.Presentation.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotNetAcademy.BikeShop.Host.Controllers
+namespace DotNetAcademy.BikeShop.Presentation.Controllers
 {
     public class AccountController : BaseController
     {

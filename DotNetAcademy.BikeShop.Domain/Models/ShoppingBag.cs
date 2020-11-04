@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotNetAcademy.BikeShop.Presentation.Models
+namespace DotNetAcademy.BikeShop.Domain.Models
 {
     public class ShoppingBag
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
 
-        public string CustomerId { get; set; }
-        public Customer Customer { get; set; }
         public ICollection<ShoppingItem> Items { get; set; }
 
         public ShoppingBag()

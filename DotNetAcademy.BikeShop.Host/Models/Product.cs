@@ -1,4 +1,4 @@
-﻿namespace DotNetAcademy.BikeShop.Host.Models
+﻿namespace DotNetAcademy.BikeShop.Presentation.Models
 {
     public class Product
     {
