@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DotNetAcademy.BikeShop.Infrastructure.Models;
 
 namespace DotNetAcademy.BikeShop.Presentation.Models
 {

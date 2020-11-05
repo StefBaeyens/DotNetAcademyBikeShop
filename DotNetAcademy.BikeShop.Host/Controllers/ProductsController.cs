@@ -10,7 +10,7 @@ using PagedList;
 
 namespace DotNetAcademy.BikeShop.Presentation.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class ProductsController : BaseController
     {
         private readonly IMediator _mediator;
@@ -133,7 +133,7 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
         public async Task<ActionResult> AddToBasket(AddToBasketViewModel model)
         {
             //TODO: Move to seperate handler
-            var customer = _context.Customers.Include(c => c.Bags).ThenInclude(b => b.Items).SingleOrDefault();
+            var customer = Customers.Include(c => c.Bags).ThenInclude(b => b.Items).SingleOrDefault();
 
             if (customer == null)
             {

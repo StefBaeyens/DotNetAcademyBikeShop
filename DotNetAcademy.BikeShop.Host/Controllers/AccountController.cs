@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using DotNetAcademy.BikeShop.Infrastructure.Models;
 using DotNetAcademy.BikeShop.Presentation.Models;
 using DotNetAcademy.BikeShop.Presentation.ViewModels;
 using Microsoft.AspNetCore.Authorization;

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetAcademy.BikeShop.Infrastructure.Persistence
 {
-    public class BikeShopDbContext : DbContext, IBikeShopDbContext
+    public class BikeShopDbContext : IdentityDbContext<Customer>, IBikeShopDbContext
     {
         public BikeShopDbContext(DbContextOptions<BikeShopDbContext> options) : base(options)
         {
