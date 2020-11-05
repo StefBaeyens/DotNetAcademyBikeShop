@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DotNetAcademy.BikeShop.Application.Commands;
 using DotNetAcademy.BikeShop.Application.Queries;
 using DotNetAcademy.BikeShop.Application.ViewModels;
+using DotNetAcademy.BikeShop.Presentation.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -128,39 +130,50 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
             await _context.SaveChangesAsync();
             MessageSuccess("The product was successfully deleted.");
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
         public async Task<ActionResult> AddToBasket(AddToBasketViewModel model)
         {
-            //TODO: Move to seperate handler
-            var customer = Customers.Include(c => c.Bags).ThenInclude(b => b.Items).SingleOrDefault();
-
-            if (customer == null)
+            await _mediator.Send(new AddToBasketCommand
             {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var bag = customer.Bags.FirstOrDefault();
-
-            if (bag == null)
-            {
-                bag = (await _context.ShoppingBags.AddAsync(new ShoppingBag
-                {
-                    Customer = customer,
-                    Date = DateTime.Now
-                })).Entity;
-            }
-
-            var product = await _context.Products.FindAsync(model.Product.Id);
-
-            bag.AddToBag(new ShoppingItem { Product = product, Quantity = model.Quantity });
-            //=====================
-
-            await _context.SaveChangesAsync();
+                ProductId = model.Product.Id,
+                Quantity = model.Quantity,
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            });
 
             MessageSuccess("This item was successfully added to your basket");
 
             return RedirectToAction("Index");
-        }*/
+
+            // //TODO: Move to seperate handler
+            // var customer = Customers.Include(c => c.Bags).ThenInclude(b => b.Items).SingleOrDefault();
+            //
+            // if (customer == null)
+            // {
+            //     return RedirectToAction("Login", "Account");
+            // }
+            //
+            // var bag = customer.Bags.FirstOrDefault();
+            //
+            // if (bag == null)
+            // {
+            //     bag = (await _context.ShoppingBags.AddAsync(new ShoppingBag
+            //     {
+            //         Customer = customer,
+            //         Date = DateTime.Now
+            //     })).Entity;
+            // }
+            //
+            // var product = await _context.Products.FindAsync(model.Product.Id);
+            //
+            // bag.AddToBag(new ShoppingItem { Product = product, Quantity = model.Quantity });
+            // //=====================
+            //
+            // await _context.SaveChangesAsync();
+            //
+            // MessageSuccess("This item was successfully added to your basket");
+            //
+            // return RedirectToAction("Index");
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿using DotNetAcademy.BikeShop.Application.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace DotNetAcademy.BikeShop.Presentation.ViewModels
+namespace DotNetAcademy.BikeShop.Application.ViewModels
 {
     public class ShoppingItemViewModel
     {

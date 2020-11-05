@@ -20,6 +20,7 @@ namespace DotNetAcademy.BikeShop.Infrastructure.Persistence.Extensions
             modelBuilder.Entity<Customer>().Property(customer => customer.FirstName).IsRequired();
 
             modelBuilder.Entity<ShoppingBag>().Property(bag => bag.Date).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<ShoppingBag>().Property(bag => bag.UserId).IsRequired();
 
             modelBuilder.Entity<ShoppingItem>().Property(item => item.Quantity).IsRequired();
 

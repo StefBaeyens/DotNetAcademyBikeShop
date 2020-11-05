@@ -3,8 +3,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using DotNetAcademy.BikeShop.Application.Queries;
 using DotNetAcademy.BikeShop.Presentation.Models;
 using DotNetAcademy.BikeShop.Presentation.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,29 +17,20 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
     [Authorize]
     public class ShoppingBagController : BaseController
     {
-        /*private readonly BikeShopDbContext _context;
-        private readonly IMapper _mapper;
-        private readonly UserManager<Customer> _userManager;
+        private readonly IMediator _mediator;
 
-        public ShoppingBagController(BikeShopDbContext context, IMapper mapper, UserManager<Customer> userManager)
+        public ShoppingBagController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
-            _userManager = userManager;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var customerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //TODO: Move to handler
-            var bags = _context.ShoppingBags.Where(b => b.CustomerId == customerId).Include(c => c.Items).ThenInclude(item => item.Product).ToList();
-            var bag = bags.FirstOrDefault() ?? (await _context.ShoppingBags.AddAsync(new ShoppingBag
+            var result = await _mediator.Send(new GetShoppingBagByUserIdQuery
             {
-                CustomerId = customerId,
-                Date = DateTime.Now
-            })).Entity;
-            //====================
-            return View(_mapper.Map<ShoppingBagViewModel>(bag));
-        }*/
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            });
+            return View(result);
+        }
     }
 }
