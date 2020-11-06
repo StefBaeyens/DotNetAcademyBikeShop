@@ -14,6 +14,6 @@ namespace DotNetAcademy.BikeShop.Application.ViewModels
         public int ProductId { get; set; }
         public ProductViewModel Product { get; set; }
 
-        public decimal TotalPrice => Quantity * Product.Price;
+        public decimal Total => Product.Price * Quantity;
     }
 }

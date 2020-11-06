@@ -26,6 +26,7 @@ namespace DotNetAcademy.BikeShop.Presentation
             services.RegisterPersistence(Configuration);
             services.RegisterIdentity();
             services.RegisterFluentValidations();
+            services.RegisterBusinessRules();
 
             services.AddMvc();
         }

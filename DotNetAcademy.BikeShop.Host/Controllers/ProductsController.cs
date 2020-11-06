@@ -64,15 +64,10 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
             return RedirectToAction("Details", addedProduct.Id);
         }
 
-        /*// GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Products/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products.FindAsync(id);
+            var product = await _mediator.Send(new GetProductQuery { Id = id });
             if (product == null)
             {
                 return NotFound();
@@ -87,22 +82,15 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
         {
             if (id != product.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            if (ModelState.IsValid)
-            {
-                //TODO: Move to handler
-                _context.Update(product);
-                await _context.SaveChangesAsync();
-                MessageSuccess("The product was successfully updated.");
-                return RedirectToAction(nameof(Details));
-            }
-
-            return View(product);
+            await _mediator.Send(new UpdateProductCommand { Product = product });
+            MessageSuccess("The product was successfully updated.");
+            return RedirectToAction(nameof(Details));
         }
 
-        // GET: Products/Delete/5
+        /*// GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,36 +132,6 @@ namespace DotNetAcademy.BikeShop.Presentation.Controllers
             MessageSuccess("This item was successfully added to your basket");
 
             return RedirectToAction("Index");
-
-            // //TODO: Move to seperate handler
-            // var customer = Customers.Include(c => c.Bags).ThenInclude(b => b.Items).SingleOrDefault();
-            //
-            // if (customer == null)
-            // {
-            //     return RedirectToAction("Login", "Account");
-            // }
-            //
-            // var bag = customer.Bags.FirstOrDefault();
-            //
-            // if (bag == null)
-            // {
-            //     bag = (await _context.ShoppingBags.AddAsync(new ShoppingBag
-            //     {
-            //         Customer = customer,
-            //         Date = DateTime.Now
-            //     })).Entity;
-            // }
-            //
-            // var product = await _context.Products.FindAsync(model.Product.Id);
-            //
-            // bag.AddToBag(new ShoppingItem { Product = product, Quantity = model.Quantity });
-            // //=====================
-            //
-            // await _context.SaveChangesAsync();
-            //
-            // MessageSuccess("This item was successfully added to your basket");
-            //
-            // return RedirectToAction("Index");
         }
     }
 }

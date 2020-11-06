@@ -4,6 +4,7 @@ using DotNetAcademy.BikeShop.Infrastructure.Models;
 using DotNetAcademy.BikeShop.Infrastructure.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DotNetAcademy.BikeShop.Infrastructure.Persistence
 {

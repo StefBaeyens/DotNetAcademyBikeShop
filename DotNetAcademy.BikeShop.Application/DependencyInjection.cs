@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using AutoMapper;
+using DotNetAcademy.BikeShop.Application.Interfaces;
+using DotNetAcademy.BikeShop.Application.Rules;
 using MediatR;
 
 namespace DotNetAcademy.BikeShop.Application
@@ -14,6 +13,12 @@ namespace DotNetAcademy.BikeShop.Application
         public static IServiceCollection RegisterMediatR(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            return services;
+        }
+
+        public static IServiceCollection RegisterBusinessRules(this IServiceCollection services)
+        {
+            services.AddTransient<IDiscountRule, MultipleProductsPromotion>();
             return services;
         }
     }

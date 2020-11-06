@@ -21,10 +21,12 @@ namespace DotNetAcademy.BikeShop.Application.Commands
         public class AddProductToBasketCommandHandler : IRequestHandler<AddToBasketCommand>
         {
             private readonly IBikeShopDbContext _context;
+            private readonly IMediator _mediator;
 
-            public AddProductToBasketCommandHandler(IBikeShopDbContext context)
+            public AddProductToBasketCommandHandler(IBikeShopDbContext context, IMediator mediator)
             {
                 _context = context;
+                _mediator = mediator;
             }
 
             public async Task<Unit> Handle(AddToBasketCommand request, CancellationToken cancellationToken)
@@ -33,11 +35,11 @@ namespace DotNetAcademy.BikeShop.Application.Commands
 
                 var product = await _context.Products.FindAsync(new object[] { request.ProductId }, cancellationToken);
 
-                bag.AddToBag(new ShoppingItem(bag, product, request.Quantity));
+                AddToBag(bag, new ShoppingItem(bag, product, request.Quantity));
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit();
+                return Unit.Value;
 
                 async Task<ShoppingBag> GetShoppingBagByUserId(string userId)
                 {
@@ -55,6 +57,20 @@ namespace DotNetAcademy.BikeShop.Application.Commands
                         UserId = request.UserId,
                         Date = DateTime.Now
                     }, cancellationToken)).Entity;
+                }
+
+                static void AddToBag(ShoppingBag bag, ShoppingItem item)
+                {
+                    var existingItem = bag.Items.SingleOrDefault(shoppingItem => shoppingItem.Product == item.Product);
+                    if (existingItem != null)
+                    {
+                        existingItem.Quantity += item.Quantity;
+                    }
+                    else
+                    {
+                        item.Bag = bag;
+                        bag.Items.Add(item);
+                    }
                 }
             }
         }

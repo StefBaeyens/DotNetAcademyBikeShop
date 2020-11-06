@@ -13,6 +13,7 @@ namespace DotNetAcademy.BikeShop.Application.ViewModels
         public string UserId { get; set; }
         public ICollection<ShoppingItemViewModel> Items { get; set; }
 
-        public decimal GetTotal => Items.Sum(i => i.TotalPrice);
+        public decimal Total { get; set; }
+        public decimal TotalDiscount { get; set; }
     }
 }

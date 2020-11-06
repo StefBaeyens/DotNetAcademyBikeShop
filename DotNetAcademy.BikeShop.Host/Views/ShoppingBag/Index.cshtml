@@ -25,14 +25,18 @@
             {
                 <tr>
                     <th scope="row">@item.Product.Name</th>
-                    <td>€ @item.Product.Price</td>
+                    <td>€ @item.Product.Price.ToString("F")</td>
                     <td>@item.Quantity</td>
-                    <td>€ @item.TotalPrice</td>
+                    <td>€ @item.Total.ToString("F")</td>
                 </tr>
             }
             <tr>
+                <th scope="row" colspan="3"><i>Total discount</i></th>
+                <td><b>€ @Model.TotalDiscount.ToString("F")</b></td>
+            </tr>
+            <tr>
                 <th scope="row" colspan="3"><b>Total</b></th>
-                <td><b>€ @Model.GetTotal</b></td>
+                <td><b>€ @Model.Total.ToString("F")</b></td>
             </tr>
         }
         else
